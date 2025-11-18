@@ -1,10 +1,12 @@
-import Link from 'next/link';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import ProductsCarousel from '@/components/ProductsCarousel';
 import { ServicesGrid } from '@/components/ServicesGrid';
 import { CounterCards } from '@/components/CounterCards';
 import { PointerHighlight } from '@/components/ui/pointer-highlight';
+import Testimonials from '@/components/Testimonials';
+import CTABanner from '@/components/CTABanner';
+import Footer from '@/components/Footer';
 
 export default function Home() {
   return (
@@ -189,49 +191,14 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Müşteri Deneyimleri Section */}
+      <Testimonials />
+
+      {/* CTA Banner - Katalog İndirme */}
+      <CTABanner />
+
       {/* Footer */}
-      <footer className="bg-primary-900 text-white py-12">
-        <div className="content-container">
-          <div className="grid md:grid-cols-3 gap-8 mb-8">
-            <div>
-              <h3 className="text-2xl font-bold mb-4">iDisplay</h3>
-              <p className="text-primary-200">
-                Profesyonel dijital ekran çözümleri ile işletmenizi geleceğe taşıyoruz.
-              </p>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Hızlı Linkler</h4>
-              <ul className="space-y-2">
-                <li>
-                  <Link href="#hizmetler" className="text-primary-200 hover:text-white transition-colors">
-                    Hizmetlerimiz
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#hakkimizda" className="text-primary-200 hover:text-white transition-colors">
-                    Hakkımızda
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#iletisim" className="text-primary-200 hover:text-white transition-colors">
-                    İletişim
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">İletişim</h4>
-              <ul className="space-y-2 text-primary-200">
-                <li>Email: info@idisplay.com.tr</li>
-                <li>Tel: +90 XXX XXX XX XX</li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-primary-800 pt-8 text-center text-primary-300">
-            <p>&copy; {new Date().getFullYear()} iDisplay. Tüm hakları saklıdır.</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
       </main>
     </>
   );

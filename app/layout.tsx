@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import StructuredData from "@/components/StructuredData";
+import LiveChat from "@/components/LiveChat";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -80,6 +81,7 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         {children}
+        <LiveChat />
       </body>
     </html>
   );
