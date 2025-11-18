@@ -18,14 +18,17 @@ import { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
 import ContactModal from "./ContactModal";
+import CallModal from "./CallModal";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [isCallModalOpen, setIsCallModalOpen] = useState(false);
 
   return (
+    <>
     <Navbar
       className={isDropdownOpen || isSearchOpen ? "bg-white shadow-md" : ""}
       isExpanded={isDropdownOpen || isSearchOpen}
@@ -102,9 +105,38 @@ export default function Header() {
               </button>
 
               {/* Hemen Ara Button */}
+              <button
+                onClick={() => setIsCallModalOpen(true)}
+                className={`hidden md:flex items-center gap-2 font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 ${
+                  effectiveVisible
+                    ? "w-10 h-10 rounded-full bg-green-600 text-white hover:bg-green-700 justify-center"
+                    : "px-6 py-2.5 rounded-full bg-green-600 text-white hover:bg-green-700"
+                }`}
+              >
+                {!effectiveVisible && (
+                  <span className="text-sm uppercase tracking-wide whitespace-nowrap">
+                    Hemen Ara
+                  </span>
+                )}
+                <svg
+                  className="w-5 h-5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                  />
+                </svg>
+              </button>
+
+              {/* Hemen Ara Button Mobile (Direct Call) */}
               <a
-                href="tel:+908502222200"
-                className={`flex items-center gap-2 font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 ${
+                href="tel:+902123560420"
+                className={`md:hidden flex items-center gap-2 font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 ${
                   effectiveVisible
                     ? "w-10 h-10 rounded-full bg-green-600 text-white hover:bg-green-700 justify-center"
                     : "px-6 py-2.5 rounded-full bg-green-600 text-white hover:bg-green-700"
@@ -277,9 +309,13 @@ export default function Header() {
       </MobileNav>
         </>
       )}
-
-      {/* Contact Modal */}
-      <ContactModal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} />
     </Navbar>
+
+    {/* Contact Modal */}
+    <ContactModal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} />
+
+    {/* Call Modal */}
+    <CallModal isOpen={isCallModalOpen} onClose={() => setIsCallModalOpen(false)} />
+    </>
   );
 }
