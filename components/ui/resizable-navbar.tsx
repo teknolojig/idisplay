@@ -69,13 +69,6 @@ export const Navbar = ({ children, className, isExpanded }: NavbarProps) => {
   return (
     <motion.div
       ref={ref}
-      animate={{
-        paddingBottom: isExpanded ? "16px" : "0px",
-      }}
-      transition={{
-        duration: 0.3,
-        ease: [0.25, 0.46, 0.45, 0.94],
-      }}
       className={cn("fixed inset-x-0 top-0 z-50 w-full transition-colors duration-300", className)}
     >
       {typeof children === "function" ? (

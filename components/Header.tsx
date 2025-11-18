@@ -17,11 +17,13 @@ import { navigationData } from "@/data/navigation";
 import { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
+import ContactModal from "./ContactModal";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   return (
     <Navbar
@@ -71,8 +73,8 @@ export default function Header() {
               </button>
 
               {/* Bilgi Formu Button */}
-              <Link
-                href="/iletisim"
+              <button
+                onClick={() => setIsContactModalOpen(true)}
                 className={`flex items-center gap-2 font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 ${
                   effectiveVisible
                     ? "w-10 h-10 rounded-full bg-primary-600 text-white hover:bg-primary-700 justify-center"
@@ -97,7 +99,7 @@ export default function Header() {
                     d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                   />
                 </svg>
-              </Link>
+              </button>
 
               {/* Hemen Ara Button */}
               <a
@@ -142,7 +144,7 @@ export default function Header() {
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
               className={`fixed left-0 right-0 z-50 bg-white shadow-xl border-b border-gray-200 overflow-hidden ${
-                visible ? "top-[80px]" : "top-[100px]"
+                visible ? "top-[64px]" : "top-[80px]"
               }`}
             >
               <div className="content-container py-8">
@@ -228,9 +230,11 @@ export default function Header() {
               />
               {/* Mobile Action Buttons */}
               <div className="w-full space-y-2 border-t border-gray-200 pt-4">
-                <Link
-                  href="/iletisim"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                <button
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    setIsContactModalOpen(true);
+                  }}
                   className="flex items-center justify-center gap-2 w-full px-5 py-3 bg-primary-600 text-white rounded-lg font-semibold hover:bg-primary-700 transition-colors"
                 >
                   <span className="text-sm uppercase">Bilgi Formu</span>
@@ -247,7 +251,7 @@ export default function Header() {
                       d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                     />
                   </svg>
-                </Link>
+                </button>
                 <a
                   href="tel:+908502222200"
                   className="flex items-center justify-center gap-2 w-full px-5 py-3 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition-colors"
@@ -273,6 +277,9 @@ export default function Header() {
       </MobileNav>
         </>
       )}
+
+      {/* Contact Modal */}
+      <ContactModal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} />
     </Navbar>
   );
 }

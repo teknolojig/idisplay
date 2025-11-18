@@ -136,8 +136,8 @@ export const NavigationMenu = ({
                     exit={{ opacity: 0, height: 0 }}
                     transition={{ duration: 0.3 }}
                     className={cn(
-                      "fixed left-0 right-0 z-50 bg-white shadow-xl border-b border-gray-200 overflow-hidden pt-6",
-                      visible ? "top-[80px]" : "top-[100px]"
+                      "fixed left-0 right-0 z-50 bg-white shadow-xl border-b border-gray-200 overflow-hidden",
+                      visible ? "top-[64px] pt-2" : "top-[80px] pt-6"
                     )}
                   >
                     <div className="content-container pb-6">

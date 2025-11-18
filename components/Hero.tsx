@@ -218,7 +218,7 @@ export default function Hero() {
   );
 }
 
-// LED Screen Visualization - Basitleştirilmiş LED Ekran
+// LED Screen Visualization - Modern LED TV Display
 const LEDScreenViz = () => (
   <motion.div
     initial={{ opacity: 0, x: 50 }}
@@ -236,79 +236,81 @@ const LEDScreenViz = () => (
     >
       LED EKRAN ÇÖZÜMLERİ
     </motion.div>
-    <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-2xl">
-      {/* LED Display Frame */}
-      <div className="relative aspect-[4/3] bg-black rounded-xl overflow-hidden border-4 border-gray-800 mb-3">
-        {/* LED Content Display - Gradient Animation */}
-        <motion.div
-          className="absolute inset-0"
-          animate={{
-            background: [
-              "linear-gradient(135deg, rgba(59, 130, 246, 0.4) 0%, rgba(168, 85, 247, 0.4) 100%)",
-              "linear-gradient(135deg, rgba(168, 85, 247, 0.4) 0%, rgba(236, 72, 153, 0.4) 100%)",
-              "linear-gradient(135deg, rgba(236, 72, 153, 0.4) 0%, rgba(59, 130, 246, 0.4) 100%)",
-              "linear-gradient(135deg, rgba(59, 130, 246, 0.4) 0%, rgba(168, 85, 247, 0.4) 100%)",
-            ],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        />
 
-        {/* LED Pixel Grid Overlay */}
-        <div
-          className="absolute inset-0 opacity-30"
-          style={{
-            backgroundImage: `
-              repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.3) 2px, rgba(0,0,0,0.3) 3px),
-              repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.3) 2px, rgba(0,0,0,0.3) 3px)
-            `,
-            backgroundSize: '6px 6px',
-          }}
-        />
+    {/* LED TV Frame - Realistic Design */}
+    <div className="relative bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 rounded-3xl p-4 shadow-2xl">
+      {/* Screen Bezel */}
+      <div className="relative bg-black rounded-2xl p-2 shadow-inner">
+        {/* LED Display Screen */}
+        <div className="relative aspect-video bg-gradient-to-br from-gray-950 to-black rounded-xl overflow-hidden">
+          {/* Dynamic Content Display */}
+          <motion.div
+            className="absolute inset-0"
+            animate={{
+              background: [
+                "radial-gradient(circle at 30% 50%, rgba(59, 130, 246, 0.8) 0%, rgba(99, 102, 241, 0.6) 30%, rgba(0, 0, 0, 0.95) 70%)",
+                "radial-gradient(circle at 70% 50%, rgba(168, 85, 247, 0.8) 0%, rgba(236, 72, 153, 0.6) 30%, rgba(0, 0, 0, 0.95) 70%)",
+                "radial-gradient(circle at 50% 30%, rgba(59, 130, 246, 0.8) 0%, rgba(99, 102, 241, 0.6) 30%, rgba(0, 0, 0, 0.95) 70%)",
+                "radial-gradient(circle at 30% 50%, rgba(59, 130, 246, 0.8) 0%, rgba(99, 102, 241, 0.6) 30%, rgba(0, 0, 0, 0.95) 70%)",
+              ],
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
 
-        {/* Scan line effect */}
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-b from-white/20 via-transparent to-transparent pointer-events-none"
-          style={{
-            height: '15%',
-          }}
-          animate={{
-            y: ['-15%', '115%'],
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        />
+          {/* LED Pixel Structure - Subtle */}
+          <div
+            className="absolute inset-0 opacity-20"
+            style={{
+              backgroundImage: `
+                repeating-linear-gradient(0deg, transparent, transparent 1.5px, rgba(0,0,0,0.4) 1.5px, rgba(0,0,0,0.4) 2px),
+                repeating-linear-gradient(90deg, transparent, transparent 1.5px, rgba(0,0,0,0.4) 1.5px, rgba(0,0,0,0.4) 2px)
+              `,
+              backgroundSize: '3px 3px',
+            }}
+          />
 
-        {/* Corner Indicators */}
-        <div className="absolute top-2 left-2 flex gap-1">
-          {[...Array(3)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="w-1.5 h-1.5 rounded-full bg-green-400"
-              animate={{ opacity: [0.3, 1, 0.3] }}
-              transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.3 }}
-            />
-          ))}
+          {/* Screen Reflection Effect */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white/5 via-transparent to-transparent pointer-events-none" />
+
+          {/* Power LED Indicator */}
+          <motion.div
+            className="absolute bottom-3 left-3 w-2 h-2 rounded-full bg-green-500 shadow-lg shadow-green-500/50"
+            animate={{ opacity: [0.6, 1, 0.6] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          />
+
+          {/* Display Info Overlay */}
+          <div className="absolute top-3 right-3 flex flex-col items-end gap-1">
+            <div className="px-2 py-1 bg-black/60 backdrop-blur-sm rounded text-[8px] text-white/80 font-mono">4K HDR</div>
+            <div className="px-2 py-1 bg-black/60 backdrop-blur-sm rounded text-[8px] text-white/80 font-mono">3840×2160</div>
+          </div>
         </div>
       </div>
 
-      {/* Status Bar */}
-      <div className="flex items-center justify-between px-3 py-2 bg-white/5 rounded-lg">
-        <div className="flex gap-1.5">
-          <motion.div className="w-2 h-2 rounded-full bg-green-400" animate={{ opacity: [0.5, 1, 0.5] }} transition={{ duration: 2, repeat: Infinity }} />
-          <span className="text-white/60 text-xs">4K UHD</span>
-        </div>
+      {/* LED TV Stand/Base */}
+      <div className="mt-3 flex justify-center">
+        <div className="w-20 h-1 bg-gradient-to-r from-gray-700 via-gray-600 to-gray-700 rounded-full shadow-lg" />
+      </div>
+
+      {/* Specs Bar */}
+      <div className="mt-4 flex items-center justify-between px-3 py-2 bg-white/5 backdrop-blur-sm rounded-lg">
         <div className="flex items-center gap-2">
-          <span className="text-white/40 text-xs">P2.5 LED</span>
-          <svg className="w-4 h-4 text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <motion.div
+            className="w-2 h-2 rounded-full bg-green-400"
+            animate={{ opacity: [0.5, 1, 0.5] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          />
+          <span className="text-white/70 text-xs font-semibold">P1.5 LED Display</span>
+        </div>
+        <div className="flex items-center gap-1.5">
+          <svg className="w-4 h-4 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
           </svg>
+          <span className="text-white/50 text-xs">UHD</span>
         </div>
       </div>
     </div>
